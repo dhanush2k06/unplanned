@@ -8,11 +8,21 @@ export function ProtectedRoute() {
   if (!configured) {
     return <Navigate to="/login" replace />;
   }
+
   if (loading) {
-    return <div className="p-10 text-admin-muted">Checking session…</div>;
+    return (
+      <div className="flex min-h-svh items-center justify-center bg-admin-bg p-10 text-sm text-admin-muted">
+        <div className="text-center">
+          <div className="mx-auto h-7 w-7 animate-spin rounded-full border-2 border-brand-red border-t-transparent" />
+          <p className="mt-3">Verifying admin session…</p>
+        </div>
+      </div>
+    );
   }
+
   if (!isAdmin) {
     return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   }
+
   return <Outlet />;
 }

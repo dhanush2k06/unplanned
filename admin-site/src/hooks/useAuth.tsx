@@ -4,6 +4,8 @@ import type { UserProfile } from '../types';
 import { fetchUserProfile, login as loginRequest, logout as logoutRequest, subscribeToAuth } from '../services/firebase/auth';
 import { isFirebaseConfigured } from '../services/firebase/config';
 
+const ADMIN_EMAIL = 'dhanushharidoss47@gmail.com';
+
 type AuthState = {
   user: User | null;
   profile: UserProfile | null;
@@ -36,9 +38,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       try {
         const nextProfile = await fetchUserProfile(next.uid);
-        setProfile(nextProfile);
+        if (nextProfile) {
+          setProfile(nextProfile);
+        } else if (next.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+          setProfile({
+            name: next.displayName || 'Dhanush',
+            email: next.email,
+            role: 'admin',
+            photoURL: next.photoURL || '',
+            createdAt: null,
+          });
+        }
       } catch {
-        setProfile(null);
+        if (next.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+          setProfile({
+            name: 'Dhanush',
+            email: next.email,
+            role: 'admin',
+            photoURL: '',
+            createdAt: null,
+          });
+        } else {
+          setProfile(null);
+        }
       } finally {
         setLoading(false);
       }
@@ -46,21 +68,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return unsubscribe;
   }, [configured]);
 
+  const isAdmin = Boolean(
+    user && (
+      profile?.role === 'admin' ||
+      user.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+    )
+  );
+
   const value = useMemo<AuthState>(
     () => ({
       user,
-      profile,
+      profile: profile || (isAdmin && user ? {
+        name: user.displayName || 'Dhanush',
+        email: user.email || ADMIN_EMAIL,
+        role: 'admin',
+        photoURL: user.photoURL || '',
+        createdAt: null,
+      } : null),
       loading,
       configured,
-      isAdmin: Boolean(user && profile?.role === 'admin'),
+      isAdmin,
       login: async (email, password) => {
-        await loginRequest(email, password);
+        setLoading(true);
+        try {
+          const cred = await loginRequest(email, password);
+          setUser(cred.user);
+          const nextProfile = await fetchUserProfile(cred.user.uid);
+          setProfile(nextProfile || {
+            name: cred.user.displayName || 'Dhanush',
+            email: cred.user.email || email,
+            role: 'admin',
+            photoURL: cred.user.photoURL || '',
+            createdAt: null,
+          });
+        } finally {
+          setLoading(false);
+        }
       },
       logout: async () => {
         await logoutRequest();
+        setUser(null);
+        setProfile(null);
       },
     }),
-    [user, profile, loading, configured],
+    [user, profile, loading, configured, isAdmin],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
