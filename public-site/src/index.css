@@ -1,0 +1,208 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --brand-red: #ff0000;
+  --brand-dark-red: #470000;
+  --brand-gradient: linear-gradient(220.55deg, #ff0000 0%, #470000 100%);
+
+  --public-bg: #0d0d0d;
+  --public-surface: #151515;
+  --public-surface-hover: #1d1d1d;
+  --public-text: #ffffff;
+  --public-text-secondary: #a8a8a8;
+  --public-border: #2a2a2a;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  --radius: 14px;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  --transition: 180ms ease;
+}
+
+@theme {
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-article: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --color-brand-red: #ff0000;
+  --color-brand-dark-red: #470000;
+  --color-public-bg: #0d0d0d;
+  --color-public-surface: #151515;
+  --color-public-surface-hover: #1d1d1d;
+  --color-public-text: #ffffff;
+  --color-public-muted: #a8a8a8;
+  --color-public-border: #2a2a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--public-bg);
+  color: var(--public-text);
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 3px;
+}
+
+.bg-brand-gradient {
+  background: var(--brand-gradient);
+}
+
+.text-brand-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.article-prose {
+  font-family: var(--font-article);
+  font-size: clamp(17px, 1.15vw, 20px);
+  line-height: 1.7;
+  color: #ececec;
+}
+
+.article-prose h1,
+.article-prose h2,
+.article-prose h3,
+.article-prose h4 {
+  font-family: var(--font-heading);
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.article-prose h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  margin: 2.4rem 0 1rem;
+  border-left: 3px solid var(--brand-red);
+  padding-left: 16px;
+}
+
+.article-prose h3 {
+  font-size: clamp(22px, 2.2vw, 26px);
+  margin: 2rem 0 0.8rem;
+}
+
+.article-prose p {
+  margin: 0 0 1.25rem;
+}
+
+.article-prose a {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-red);
+  text-underline-offset: 4px;
+}
+
+.article-prose blockquote {
+  margin: 1.6rem 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid var(--brand-red);
+  color: var(--public-text-secondary);
+  font-style: italic;
+}
+
+.article-prose ul,
+.article-prose ol {
+  margin: 0 0 1.4rem;
+  padding-left: 1.4rem;
+}
+
+.article-prose li + li {
+  margin-top: 0.4rem;
+}
+
+.article-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95em;
+}
+
+.article-prose th,
+.article-prose td {
+  border: 1px solid var(--public-border);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+}
+
+.article-prose hr {
+  border: 0;
+  border-top: 1px solid var(--public-border);
+  margin: 2.4rem 0;
+}
+
+.article-prose img {
+  border-radius: 12px;
+  margin: 1.6rem 0;
+}
+
+.article-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86em;
+  background: #111;
+  border: 1px solid var(--public-border);
+  border-radius: 6px;
+  padding: 0.12rem 0.35rem;
+}
+
+.article-prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
