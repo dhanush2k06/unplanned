@@ -7,8 +7,8 @@ export function LoginPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('dhanushharidoss47@gmail.com');
+  const [password, setPassword] = useState('Dhanush47#');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
