@@ -30,8 +30,15 @@ export function LoginPage() {
       await login(email, password);
       navigate(destination, { replace: true });
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to sign in.';
-      setError(message);
+      const code = (err as { code?: string })?.code;
+      if (code === 'auth/configuration-not-found') {
+        setError(
+          'Email/Password sign-in provider is not enabled in Firebase Console. Please go to Firebase Console > Authentication > Sign-in method, click "Email/Password", and toggle it ON.',
+        );
+      } else {
+        const message = err instanceof Error ? err.message : 'Failed to sign in.';
+        setError(message);
+      }
     } finally {
       setSubmitting(false);
     }
