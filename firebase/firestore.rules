@@ -6,14 +6,22 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isAdminEmail() {
+      return request.auth.token.email == 'dhanushharidoss47@gmail.com';
+    }
+
     function userDoc() {
       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
     }
 
     function isAdmin() {
-      return isSignedIn()
-        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
-        && userDoc().role == 'admin';
+      return isSignedIn() && (
+        // Check if user document exists with admin role
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid))
+          && userDoc().role == 'admin')
+        // OR the user has the admin email (bootstrap case)
+        || isAdminEmail()
+      );
     }
 
     function isPublishedArticle() {
@@ -22,7 +30,10 @@ service cloud.firestore {
 
     match /users/{userId} {
       allow read: if isSignedIn() && request.auth.uid == userId;
-      allow write: if false;
+      // Allow admin email user to create/update their own profile
+      allow create: if isSignedIn() && request.auth.uid == userId && isAdminEmail();
+      allow update: if isSignedIn() && request.auth.uid == userId && isAdminEmail();
+      allow delete: if false;
     }
 
     match /articles/{articleId} {

@@ -237,13 +237,11 @@ export function ArticlesPage() {
                       {/* Title & Excerpt */}
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
-                          {article.coverImage && (
-                            <img
-                              src={article.coverImage}
-                              alt=""
-                              className="h-12 w-16 shrink-0 rounded-md object-cover border border-admin-border"
-                            />
-                          )}
+                          <img
+                            src={article.coverImage || '/default_image.webp'}
+                            alt=""
+                            className="h-12 w-16 shrink-0 rounded-md object-cover border border-admin-border"
+                          />
                           <div className="min-w-0">
                             <Link
                               to={`/articles/${article.id}/edit`}

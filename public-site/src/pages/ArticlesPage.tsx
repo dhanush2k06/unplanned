@@ -33,8 +33,10 @@ export function ArticlesPage() {
         <button
           type="button"
           onClick={() => setActiveSlug('all')}
-          className={`rounded-full border px-4 py-2 text-sm ${
-            activeSlug === 'all' ? 'border-brand-red text-white' : 'border-public-border text-public-muted'
+          className={`rounded-full border px-4 py-2 text-sm transition ${
+            activeSlug === 'all'
+              ? 'border-brand-red bg-brand-red text-white'
+              : 'border-public-border text-public-muted hover:border-brand-red hover:text-brand-red'
           }`}
         >
           All
@@ -44,10 +46,10 @@ export function ArticlesPage() {
             key={category.id}
             type="button"
             onClick={() => setActiveSlug(category.slug)}
-            className={`rounded-full border px-4 py-2 text-sm ${
+            className={`rounded-full border px-4 py-2 text-sm transition ${
               activeSlug === category.slug
-                ? 'border-brand-red text-white'
-                : 'border-public-border text-public-muted'
+                ? 'border-brand-red bg-brand-red text-white'
+                : 'border-public-border text-public-muted hover:border-brand-red hover:text-brand-red'
             }`}
           >
             {category.name}
@@ -68,8 +70,8 @@ export function ArticlesPage() {
                 to={`/articles/${article.slug}`}
                 className="flex flex-col gap-2 py-6 transition hover:text-brand-red md:flex-row md:items-baseline md:justify-between"
               >
-                <h2 className="font-heading text-2xl">{article.title}</h2>
-                <p className="text-sm text-public-muted">{article.category}</p>
+                <h2 className="font-heading text-2xl tracking-tight">{article.title}</h2>
+                <p className="shrink-0 text-sm text-public-muted">{article.category}</p>
               </Link>
             ))}
           </div>
@@ -78,7 +80,7 @@ export function ArticlesPage() {
           <button
             type="button"
             onClick={() => setVisible((value) => value + 6)}
-            className="rounded-full border border-public-border px-5 py-2 text-sm"
+            className="rounded-full border border-public-border px-5 py-2 text-sm text-public-muted transition hover:border-brand-red hover:text-brand-red"
           >
             Load more
           </button>

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import logo from '../assets/unplanned_logo.png';
 
 export function LoginPage() {
   const { login, isAdmin, configured, loading } = useAuth();
@@ -48,10 +49,8 @@ export function LoginPage() {
     <div className="flex min-h-svh items-center justify-center bg-brand-gradient p-4 sm:p-6">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
         <div className="text-center">
-          <span className="inline-block rounded-full bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red">
-            Studio CMS
-          </span>
-          <h1 className="mt-3 font-heading text-2xl font-bold text-admin-text">
+          <img src={logo} alt="Unplanned" className="-my-2 mx-auto h-16 w-auto object-contain" />
+          <h1 className="mt-4 font-heading text-2xl font-bold text-admin-text">
             Admin Sign In
           </h1>
           <p className="mt-1 text-sm text-admin-muted">

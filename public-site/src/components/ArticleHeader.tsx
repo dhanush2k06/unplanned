@@ -15,13 +15,11 @@ export function ArticleHeader({ article }: Props) {
       </h1>
       <p className="max-w-2xl text-lg text-public-muted">{article.excerpt}</p>
       <ArticleMeta date={article.publishedAt} readingTime={article.readingTime} />
-      {article.coverImage ? (
-        <img
-          src={article.coverImage}
-          alt=""
-          className="mt-6 w-full rounded-[18px] object-cover"
-        />
-      ) : null}
+      <img
+        src={article.coverImage || '/default_image.webp'}
+        alt=""
+        className="mt-6 w-full rounded-[18px] object-cover"
+      />
     </header>
   );
 }

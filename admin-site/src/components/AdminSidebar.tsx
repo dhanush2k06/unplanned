@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import logo from '../assets/unplanned_logo.png';
 
 const items = [
   { to: '/dashboard', label: 'Dashboard' },
@@ -15,8 +16,8 @@ export function AdminSidebar() {
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-admin-border bg-white">
       <div className="px-5 py-6">
-        <p className="font-heading text-lg text-brand-gradient">Studio</p>
-        <p className="mt-1 text-xs text-admin-muted">{profile?.name || 'Admin'}</p>
+        <img src={logo} alt="Unplanned" className="-ml-1 -my-4 h-16 w-auto object-contain" />
+        <p className="mt-2 text-xs text-admin-muted">{profile?.name || 'Admin'}</p>
       </div>
       <nav className="flex flex-1 flex-col gap-1 px-3">
         {items.map((item) => (

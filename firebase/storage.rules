@@ -6,16 +6,25 @@ service firebase.storage {
       return request.auth != null;
     }
 
+    function isAdminEmail() {
+      return request.auth.token.email == 'dhanushharidoss47@gmail.com';
+    }
+
     function isAdmin() {
-      return isSignedIn()
-        && firestore.exists(/databases/(default)/documents/users/$(request.auth.uid))
-        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      return isSignedIn() && (
+        // Check Firestore user doc role
+        (firestore.exists(/databases/(default)/documents/users/$(request.auth.uid))
+          && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        // OR the user has the admin email (bootstrap case)
+        || isAdminEmail()
+      );
     }
 
     function isImage() {
       return request.resource.contentType.matches('image/jpeg')
         || request.resource.contentType.matches('image/png')
-        || request.resource.contentType.matches('image/webp');
+        || request.resource.contentType.matches('image/webp')
+        || request.resource.contentType.matches('image/gif');
     }
 
     function isReasonableSize() {

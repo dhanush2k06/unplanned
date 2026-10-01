@@ -1,23 +1,23 @@
 @import 'tailwindcss';
 
 :root {
-  --brand-red: #ff0000;
+  --brand-red: #e00000;
   --brand-dark-red: #470000;
-  --brand-gradient: linear-gradient(220.55deg, #ff0000 0%, #470000 100%);
+  --brand-gradient: linear-gradient(220.55deg, #e00000 0%, #470000 100%);
 
-  --public-bg: #0d0d0d;
-  --public-surface: #151515;
-  --public-surface-hover: #1d1d1d;
-  --public-text: #ffffff;
-  --public-text-secondary: #a8a8a8;
-  --public-border: #2a2a2a;
+  --public-bg: #ffffff;
+  --public-surface: #f7f7f7;
+  --public-surface-hover: #efefef;
+  --public-text: #111111;
+  --public-text-secondary: #555555;
+  --public-border: #e2e2e2;
 
   --success: #22c55e;
   --warning: #f59e0b;
   --error: #ef4444;
 
   --radius: 14px;
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
   --transition: 180ms ease;
 }
 
@@ -25,14 +25,14 @@
   --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-article: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --color-brand-red: #ff0000;
+  --color-brand-red: #e00000;
   --color-brand-dark-red: #470000;
-  --color-public-bg: #0d0d0d;
-  --color-public-surface: #151515;
-  --color-public-surface-hover: #1d1d1d;
-  --color-public-text: #ffffff;
-  --color-public-muted: #a8a8a8;
-  --color-public-border: #2a2a2a;
+  --color-public-bg: #ffffff;
+  --color-public-surface: #f7f7f7;
+  --color-public-surface-hover: #efefef;
+  --color-public-text: #111111;
+  --color-public-muted: #555555;
+  --color-public-border: #e2e2e2;
 }
 
 * {
@@ -99,7 +99,7 @@ select {
   font-family: var(--font-article);
   font-size: clamp(17px, 1.15vw, 20px);
   line-height: 1.7;
-  color: #ececec;
+  color: #2d2d2d;
 }
 
 .article-prose h1,
@@ -107,7 +107,7 @@ select {
 .article-prose h3,
 .article-prose h4 {
   font-family: var(--font-heading);
-  color: #fff;
+  color: #111111;
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
@@ -129,7 +129,7 @@ select {
 }
 
 .article-prose a {
-  color: #fff;
+  color: var(--brand-red);
   text-decoration: underline;
   text-decoration-color: var(--brand-red);
   text-underline-offset: 4px;
@@ -139,7 +139,7 @@ select {
   margin: 1.6rem 0;
   padding: 0.2rem 0 0.2rem 1rem;
   border-left: 3px solid var(--brand-red);
-  color: var(--public-text-secondary);
+  color: #666666;
   font-style: italic;
 }
 
@@ -181,10 +181,11 @@ select {
 .article-prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.86em;
-  background: #111;
+  background: #f0f0f0;
   border: 1px solid var(--public-border);
   border-radius: 6px;
   padding: 0.12rem 0.35rem;
+  color: #c7254e;
 }
 
 .article-prose pre code {

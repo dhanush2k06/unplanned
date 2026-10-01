@@ -18,7 +18,7 @@ export function HomePage() {
       <section className="bg-brand-gradient">
         <div className="page-shell py-20 md:py-28">
           <p className="text-[12px] uppercase tracking-[0.28em] text-white/80">Personal blog / notes</p>
-          <h1 className="mt-6 max-w-4xl font-heading text-[clamp(42px,8vw,84px)] leading-[0.9] tracking-tight">
+          <h1 className="mt-6 max-w-4xl font-heading text-[clamp(42px,8vw,84px)] leading-[0.9] tracking-tight text-white">
             Build. Learn. Document.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/85">
@@ -44,9 +44,9 @@ export function HomePage() {
         {latest.length > 0 ? (
           <section>
             <div className="mb-6 flex items-end justify-between">
-              <h2 className="font-heading text-3xl">Latest</h2>
-              <Link to="/articles" className="text-sm text-public-muted hover:text-white">
-                All articles
+              <h2 className="font-heading text-3xl tracking-tight">Latest</h2>
+              <Link to="/articles" className="text-sm text-public-muted transition hover:text-brand-red">
+                All articles →
               </Link>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
@@ -59,13 +59,13 @@ export function HomePage() {
 
         {categories.length > 0 ? (
           <section>
-            <h2 className="font-heading text-3xl">Topics</h2>
+            <h2 className="font-heading text-3xl tracking-tight">Topics</h2>
             <div className="mt-6 flex flex-wrap gap-3">
               {categories.map((category) => (
                 <Link
                   key={category.id}
                   to={`/category/${category.slug}`}
-                  className="rounded-full border border-public-border px-4 py-2 text-sm text-public-muted transition hover:border-brand-red hover:text-white"
+                  className="rounded-full border border-public-border px-4 py-2 text-sm text-public-muted transition hover:border-brand-red hover:text-brand-red hover:bg-red-50"
                 >
                   {category.name}
                 </Link>
@@ -76,10 +76,10 @@ export function HomePage() {
 
         <section className="rounded-[18px] border border-public-border bg-public-surface p-8">
           <p className="text-[11px] uppercase tracking-[0.2em] text-public-muted">About</p>
-          <h2 className="mt-3 font-heading text-3xl">A short note</h2>
-          <p className="mt-4 max-w-2xl text-public-muted">{settings.authorBio}</p>
-          <Link to="/about" className="mt-6 inline-flex text-sm text-brand-red">
-            More about me
+          <h2 className="mt-3 font-heading text-3xl tracking-tight">A short note</h2>
+          <p className="mt-4 max-w-2xl text-public-muted leading-relaxed">{settings.authorBio}</p>
+          <Link to="/about" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand-red transition hover:gap-2">
+            More about me →
           </Link>
         </section>
       </div>
