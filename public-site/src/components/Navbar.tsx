@@ -52,31 +52,51 @@ export function Navbar({ siteName: _siteName }: Props) {
 
         <button
           type="button"
-          className="md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-public-border text-public-text transition hover:bg-public-surface md:hidden"
           aria-expanded={open}
-          aria-label="Open menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className="sr-only">Menu</span>
-          <span className="flex h-5 w-6 flex-col justify-between">
-            <span className="h-px bg-public-text" />
-            <span className="h-px bg-public-text" />
-            <span className="h-px bg-public-text" />
-          </span>
+          {open ? (
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
       {open ? (
-        <div className="border-t border-public-border bg-public-bg px-4 py-4 md:hidden">
-          <div className="flex flex-col gap-4 text-sm">
+        <div className="border-t border-public-border bg-public-bg/95 px-6 py-6 backdrop-blur shadow-lg md:hidden">
+          <div className="flex flex-col gap-4 text-base font-medium text-public-text">
             {links.map((link) => (
-              <Link key={link.label} to={link.to} onClick={() => setOpen(false)}>
+              <NavLink
+                key={link.label}
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `py-2 transition hover:text-brand-red ${isActive ? 'text-brand-red font-semibold' : 'text-public-text'}`
+                }
+              >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
-            <Link to="/search" onClick={() => setOpen(false)}>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                navigate('/search');
+              }}
+              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-public-border py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-public-muted transition hover:border-brand-red hover:text-brand-red"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
               Search
-            </Link>
+            </button>
           </div>
         </div>
       ) : null}

@@ -10,23 +10,25 @@ export function AboutPage() {
   ].filter((link) => link.href);
 
   return (
-    <div className="page-shell py-16">
+    <div className="page-shell py-10 sm:py-16">
       <Seo title={`About ${settings.authorName}`} description={settings.authorBio} />
-      <div className="grid items-start gap-10 md:grid-cols-[240px_1fr]">
-        {settings.profileImage ? (
-          <img
-            src={settings.profileImage}
-            alt={settings.authorName}
-            className="aspect-square w-full rounded-[18px] object-cover"
-          />
-        ) : (
-          <div className="aspect-square rounded-[18px] bg-brand-gradient" />
-        )}
-        <div>
+      <div className="flex flex-col items-center gap-8 text-center sm:text-left md:grid md:items-start md:gap-10 md:grid-cols-[240px_1fr]">
+        <div className="w-44 shrink-0 sm:w-56 md:w-full">
+          {settings.profileImage ? (
+            <img
+              src={settings.profileImage}
+              alt={settings.authorName}
+              className="aspect-square w-full rounded-[18px] object-cover shadow-sm"
+            />
+          ) : (
+            <div className="aspect-square w-full rounded-[18px] bg-brand-gradient shadow-sm" />
+          )}
+        </div>
+        <div className="w-full">
           <p className="text-[11px] uppercase tracking-[0.2em] text-public-muted">About</p>
-          <h1 className="mt-3 font-heading text-5xl tracking-tight">Hi, I&apos;m {settings.authorName}.</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-public-muted">{settings.authorBio}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <h1 className="mt-2 font-heading text-3xl sm:text-4xl md:text-5xl tracking-tight">Hi, I&apos;m {settings.authorName}.</h1>
+          <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-public-muted">{settings.authorBio}</p>
+          <div className="mt-6 flex flex-wrap justify-center sm:justify-start gap-2.5">
             {['AI', 'Data', 'Software', 'Products'].map((item) => (
               <span
                 key={item}
