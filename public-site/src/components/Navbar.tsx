@@ -9,10 +9,10 @@ const links = [
 ];
 
 type Props = {
-  siteName: string;
+  siteName?: string;
 };
 
-export function Navbar({ siteName }: Props) {
+export function Navbar({ siteName: _siteName }: Props) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
