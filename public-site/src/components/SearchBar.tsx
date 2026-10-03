@@ -25,7 +25,7 @@ export function SearchBar({ initial = '' }: Props) {
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Search titles, tags, topics"
-        className="w-full rounded-full border border-public-border bg-public-surface px-5 py-3 text-sm text-white placeholder:text-public-muted"
+        className="w-full rounded-full border border-public-border bg-public-surface px-5 py-3 text-sm text-public-text placeholder:text-public-muted focus:border-brand-red focus:outline-none focus:ring-1 focus:ring-brand-red"
       />
       <button type="submit" className="rounded-full bg-brand-gradient px-5 py-3 text-sm font-medium text-white">
         Search

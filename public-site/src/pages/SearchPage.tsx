@@ -16,10 +16,10 @@ export function SearchPage() {
     if (!needle) return articles;
     return articles.filter((article) => {
       const haystack = [
-        article.title,
-        article.excerpt,
-        article.category,
-        ...article.tags,
+        article.title || '',
+        article.excerpt || '',
+        article.category || '',
+        ...(article.tags || []),
       ]
         .join(' ')
         .toLowerCase();
