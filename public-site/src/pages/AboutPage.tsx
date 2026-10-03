@@ -1,5 +1,6 @@
 import { Seo } from '../components/Seo';
 import { useSiteSettings } from '../hooks/useContent';
+import profileImg from '../assets/profile_blog.jpeg';
 
 export function AboutPage() {
   const { settings } = useSiteSettings();
@@ -14,15 +15,11 @@ export function AboutPage() {
       <Seo title={`About ${settings.authorName}`} description={settings.authorBio} />
       <div className="flex flex-col items-center gap-8 text-center sm:text-left md:grid md:items-start md:gap-10 md:grid-cols-[240px_1fr]">
         <div className="w-44 shrink-0 sm:w-56 md:w-full">
-          {settings.profileImage ? (
-            <img
-              src={settings.profileImage}
-              alt={settings.authorName}
-              className="aspect-square w-full rounded-[18px] object-cover shadow-sm"
-            />
-          ) : (
-            <div className="aspect-square w-full rounded-[18px] bg-brand-gradient shadow-sm" />
-          )}
+          <img
+            src={profileImg}
+            alt={settings.authorName}
+            className="aspect-square w-full rounded-[18px] object-cover shadow-sm"
+          />
         </div>
         <div className="w-full">
           <p className="text-[11px] uppercase tracking-[0.2em] text-public-muted">About</p>

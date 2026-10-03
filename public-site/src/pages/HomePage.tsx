@@ -22,7 +22,7 @@ export function HomePage() {
             Build. Learn. Document.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/85">
-            Ideas, projects, experiments, and the things I am learning along the way.
+            This blog is full of my thoughts and perspectives. Handle it with care.
           </p>
           <Link
             to="/articles"
