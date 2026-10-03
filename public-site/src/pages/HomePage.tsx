@@ -17,12 +17,12 @@ export function HomePage() {
       <Seo title={`${settings.siteName} — Notes`} description={settings.siteDescription} />
       <section className="bg-brand-gradient">
         <div className="page-shell py-20 md:py-28">
-          <p className="text-[12px] uppercase tracking-[0.28em] text-white/80">Personal blog / notes</p>
+          <p className="text-[12px] uppercase tracking-[0.28em] text-white/80">Personal blog</p>
           <h1 className="mt-6 max-w-4xl font-heading text-[clamp(42px,8vw,84px)] leading-[0.9] tracking-tight text-white">
-            Build. Learn. Document.
+            This blog is full of my thoughts and perspectives. Handle it with care.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/85">
-            This blog is full of my thoughts and perspectives. Handle it with care.
+            Build | Document | Learn
           </p>
           <Link
             to="/articles"
