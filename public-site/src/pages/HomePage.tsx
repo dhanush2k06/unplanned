@@ -25,7 +25,7 @@ export function HomePage() {
           </p>
           <Link
             to="/articles"
-            className="mt-8 inline-flex rounded-full bg-black/25 px-6 py-3 text-sm font-medium backdrop-blur transition hover:bg-black/40"
+            className="mt-8 inline-flex rounded-full bg-black/25 px-6 py-3 text-white text-sm font-medium backdrop-blur transition hover:bg-black/40"
           >
             Explore articles
           </Link>
