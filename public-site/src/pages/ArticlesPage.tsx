@@ -1,93 +1,54 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ArticleCard } from '../components/ArticleCard';
 import { FeaturedArticle } from '../components/FeaturedArticle';
-import { SearchBar } from '../components/SearchBar';
 import { Seo } from '../components/Seo';
 import { EmptyState, ErrorState, SkeletonGrid } from '../components/States';
-import { useCategories, usePublishedArticles } from '../hooks/useContent';
+import { usePublishedArticles } from '../hooks/useContent';
 
 export function ArticlesPage() {
-  const { articles, loading, error } = usePublishedArticles(40);
-  const { categories } = useCategories();
-  const [activeSlug, setActiveSlug] = useState<string | 'all'>('all');
-  const [visible, setVisible] = useState(7);
+  const { articles, loading, error } = usePublishedArticles(50);
+  const [visible, setVisible] = useState(9);
 
-  const filtered = useMemo(() => {
-    if (activeSlug === 'all') return articles;
-    return articles.filter((article) => article.categorySlug === activeSlug);
-  }, [articles, activeSlug]);
-
-  const featured = filtered[0];
-  const rest = filtered.slice(1, visible);
+  const featured = articles[0];
+  const rest = articles.slice(1, visible);
 
   return (
     <div className="page-shell py-12">
-      <Seo title="Articles" description="All published writing, notes, and project logs." />
-      <h1 className="font-heading text-5xl tracking-tight">Articles</h1>
-      <div className="mt-8 max-w-xl">
-        <SearchBar />
+      <Seo title="Articles" description="All published writing, notes, and personal thoughts." />
+      
+      <div className="max-w-2xl">
+        <h1 className="font-heading text-4xl sm:text-5xl tracking-tight">Articles</h1>
+        <p className="mt-3 text-base sm:text-lg text-public-muted">
+          All published writing, thoughts, and notes.
+        </p>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => setActiveSlug('all')}
-          className={`rounded-full border px-4 py-2 text-sm transition ${
-            activeSlug === 'all'
-              ? 'border-brand-red bg-brand-red text-white'
-              : 'border-public-border text-public-muted hover:border-brand-red hover:text-brand-red'
-          }`}
-        >
-          All
-        </button>
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            type="button"
-            onClick={() => setActiveSlug(category.slug)}
-            className={`rounded-full border px-4 py-2 text-sm transition ${
-              activeSlug === category.slug
-                ? 'border-brand-red bg-brand-red text-white'
-                : 'border-public-border text-public-muted hover:border-brand-red hover:text-brand-red'
-            }`}
-          >
-            {category.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-10 space-y-10">
+      <div className="mt-10 space-y-12">
         {loading ? <SkeletonGrid /> : null}
         {error ? <ErrorState message={error} onRetry={() => window.location.reload()} /> : null}
-        {!loading && !featured ? <EmptyState title="No articles published yet." /> : null}
+        {!loading && !error && !featured ? (
+          <EmptyState title="No articles published yet." detail="Check back soon for new articles." />
+        ) : null}
+
         {featured ? <FeaturedArticle article={featured} /> : null}
+
         {rest.length > 0 ? (
-          <div className="divide-y divide-public-border border-y border-public-border">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((article) => (
-              <Link
-                key={article.id}
-                to={`/articles/${article.slug}`}
-                className="flex flex-col gap-2 py-6 transition hover:text-brand-red md:flex-row md:items-baseline md:justify-between"
-              >
-                <h2 className="font-heading text-2xl tracking-tight">{article.title}</h2>
-                <p className="shrink-0 text-sm text-public-muted">{article.category}</p>
-              </Link>
+              <ArticleCard key={article.id} article={article} />
             ))}
           </div>
         ) : null}
-        {filtered.length > visible ? (
-          <button
-            type="button"
-            onClick={() => setVisible((value) => value + 6)}
-            className="rounded-full border border-public-border px-5 py-2 text-sm text-public-muted transition hover:border-brand-red hover:text-brand-red"
-          >
-            Load more
-          </button>
-        ) : null}
-        {rest.length === 0 && featured ? (
-          <div className="grid gap-6 md:grid-cols-2">
-            <ArticleCard article={featured} />
+
+        {articles.length > visible ? (
+          <div className="flex justify-center pt-4">
+            <button
+              type="button"
+              onClick={() => setVisible((value) => value + 6)}
+              className="rounded-full border border-public-border px-6 py-2.5 text-sm font-medium text-public-muted transition hover:border-brand-red hover:text-brand-red"
+            >
+              Load more
+            </button>
           </div>
         ) : null}
       </div>

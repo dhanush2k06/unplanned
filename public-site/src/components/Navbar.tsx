@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/unplanned_logo.png';
 
 const links = [
   { to: '/articles', label: 'Articles' },
-  { to: '/articles', label: 'Topics', hash: true },
   { to: '/about', label: 'About' },
 ];
 
@@ -14,7 +13,6 @@ type Props = {
 
 export function Navbar({ siteName: _siteName }: Props) {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-40 border-b border-public-border bg-public-bg/90 backdrop-blur">
@@ -40,14 +38,6 @@ export function Navbar({ siteName: _siteName }: Props) {
           >
             About
           </NavLink>
-          <button
-            type="button"
-            aria-label="Search articles"
-            onClick={() => navigate('/search')}
-            className="rounded-full border border-public-border px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-public-muted transition hover:border-brand-red hover:text-brand-red"
-          >
-            Search
-          </button>
         </nav>
 
         <button
@@ -84,19 +74,6 @@ export function Navbar({ siteName: _siteName }: Props) {
                 {link.label}
               </NavLink>
             ))}
-            <button
-              type="button"
-              onClick={() => {
-                setOpen(false);
-                navigate('/search');
-              }}
-              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-public-border py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-public-muted transition hover:border-brand-red hover:text-brand-red"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              Search
-            </button>
           </div>
         </div>
       ) : null}

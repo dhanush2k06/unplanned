@@ -3,12 +3,11 @@ import { ArticleCard } from '../components/ArticleCard';
 import { FeaturedArticle } from '../components/FeaturedArticle';
 import { Seo } from '../components/Seo';
 import { EmptyState, ErrorState, SkeletonGrid } from '../components/States';
-import { useCategories, usePublishedArticles, useSiteSettings } from '../hooks/useContent';
+import { usePublishedArticles, useSiteSettings } from '../hooks/useContent';
 
 export function HomePage() {
   const { settings } = useSiteSettings();
   const { articles, loading, error } = usePublishedArticles(8);
-  const { categories } = useCategories();
   const featured = articles[0];
   const latest = articles.slice(1, 5);
 
@@ -52,23 +51,6 @@ export function HomePage() {
             <div className="grid gap-6 md:grid-cols-2">
               {latest.map((article) => (
                 <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          </section>
-        ) : null}
-
-        {categories.length > 0 ? (
-          <section>
-            <h2 className="font-heading text-3xl tracking-tight">Topics</h2>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {categories.map((category) => (
-                <Link
-                  key={category.id}
-                  to={`/category/${category.slug}`}
-                  className="rounded-full border border-public-border px-4 py-2 text-sm text-public-muted transition hover:border-brand-red hover:text-brand-red hover:bg-red-50"
-                >
-                  {category.name}
-                </Link>
               ))}
             </div>
           </section>
