@@ -13,7 +13,7 @@ export function HomePage() {
 
   return (
     <div>
-      <Seo title={`${settings.siteName} — Notes`} description={settings.siteDescription} />
+      <Seo title={`${settings.siteName}`} description={settings.siteDescription} />
       <section className="bg-brand-gradient">
         <div className="page-shell py-20 md:py-28">
           <p className="text-[12px] uppercase tracking-[0.28em] text-white/80">Personal blog</p>

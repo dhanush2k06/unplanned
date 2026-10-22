@@ -14,12 +14,12 @@ export function ArticlesPage() {
 
   return (
     <div className="page-shell py-12">
-      <Seo title="Articles" description="All published writing, notes, and personal thoughts." />
+      <Seo title="Articles" description="All published writing and personal thoughts." />
       
       <div className="max-w-2xl">
         <h1 className="font-heading text-4xl sm:text-5xl tracking-tight">Articles</h1>
         <p className="mt-3 text-base sm:text-lg text-public-muted">
-          All published writing, thoughts, and notes.
+          All published writing and thoughts.
         </p>
       </div>
 

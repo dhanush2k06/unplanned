@@ -2,7 +2,7 @@ import type { Article, ArticleSummary, Category, SiteSettings } from '../types';
 
 export const defaultSettings: SiteSettings = {
   siteName: 'Dhanush',
-  siteDescription: 'Personal notes on building, learning, and documenting the work.',
+  siteDescription: 'Personal thoughts on building, learning, and documenting the work.',
   authorName: 'Dhanush',
   authorBio:
     "I'm a student and technology enthusiast interested in AI, data, software, and building useful products. I use this blog to document things I'm learning, projects I'm building, technical experiments, lessons from failures, and ideas I'm exploring.",
@@ -43,13 +43,13 @@ export const sampleCategories: Category[] = [
     id: 'projects',
     name: 'Projects',
     slug: 'projects',
-    description: 'Build logs and product notes',
+    description: 'Build logs and product updates',
   },
 ];
 
 const sampleMarkdown = `# Why this exists
 
-I built this space to write in public: projects, experiments, and the parts of learning that usually stay in private notes.
+I built this space to write in public: projects, experiments, and the parts of learning that usually stay private.
 
 ## A small example
 
@@ -82,7 +82,7 @@ export const sampleArticles: Article[] = [
     authorName: 'Dhanush',
     readingTime: 4,
     seoTitle: 'How I Think About Building in Public',
-    seoDescription: 'Notes on documenting projects and learning in public.',
+    seoDescription: 'Thoughts on documenting projects and learning in public.',
     canonicalUrl: '',
     createdAt: '2026-08-12T10:00:00.000Z',
     updatedAt: '2026-08-20T10:00:00.000Z',
@@ -111,7 +111,7 @@ export const sampleArticles: Article[] = [
   },
   {
     id: '3',
-    title: 'Notes on Firestore Data Modeling for a Small Blog',
+    title: 'Thoughts on Firestore Data Modeling for a Small Blog',
     slug: 'firestore-data-modeling-small-blog',
     excerpt: 'Collections, published-only reads, and why drafts never belong on the public site.',
     content: sampleMarkdown,
@@ -123,7 +123,7 @@ export const sampleArticles: Article[] = [
     authorId: 'local',
     authorName: 'Dhanush',
     readingTime: 6,
-    seoTitle: 'Notes on Firestore Data Modeling for a Small Blog',
+    seoTitle: 'Thoughts on Firestore Data Modeling for a Small Blog',
     seoDescription: 'Modeling articles, drafts, and published reads in Firestore.',
     canonicalUrl: '',
     createdAt: '2026-06-18T10:00:00.000Z',
