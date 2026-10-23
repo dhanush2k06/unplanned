@@ -8,6 +8,7 @@ export function AboutPage() {
     { href: settings.socialLinks.github, label: 'GitHub' },
     { href: settings.socialLinks.linkedin, label: 'LinkedIn' },
     { href: settings.socialLinks.medium, label: 'Medium' },
+    { href: 'https://professional-portfolio-dhanush.vercel.app/', label: 'Portfolio' },
   ].filter((link) => link.href);
 
   return (
