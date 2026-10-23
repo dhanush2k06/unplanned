@@ -1,8 +1,9 @@
+import React from 'react';
 import { Seo } from '../components/Seo';
 import { useSiteSettings } from '../hooks/useContent';
 import profileImg from '../assets/profile_blog.jpeg';
 
-const linkConfig: Record<string, { icon: JSX.Element; accent: string }> = {
+const linkConfig: Record<string, { icon: React.JSX.Element; accent: string }> = {
   GitHub: {
     accent: '#24292f',
     icon: (
