@@ -6,44 +6,27 @@ service firebase.storage {
       return request.auth != null;
     }
 
-    function isAdminEmail() {
-      return request.auth.token.email == 'dhanushharidoss47@gmail.com';
-    }
-
-    function isAdmin() {
-      return isSignedIn() && (
-        // Check Firestore user doc role
-        (firestore.exists(/databases/(default)/documents/users/$(request.auth.uid))
-          && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin')
-        // OR the user has the admin email (bootstrap case)
-        || isAdminEmail()
-      );
-    }
-
     function isImage() {
-      return request.resource.contentType.matches('image/jpeg')
-        || request.resource.contentType.matches('image/png')
-        || request.resource.contentType.matches('image/webp')
-        || request.resource.contentType.matches('image/gif');
+      return request.resource.contentType.matches('image/.*');
     }
 
     function isReasonableSize() {
-      return request.resource.size < 5 * 1024 * 1024;
+      return request.resource.size < 10 * 1024 * 1024;
     }
 
     match /profile/{allPaths=**} {
       allow read: if true;
-      allow write: if isAdmin() && isImage() && isReasonableSize();
+      allow write: if isSignedIn() && isImage() && isReasonableSize();
     }
 
     match /article-covers/{allPaths=**} {
       allow read: if true;
-      allow write: if isAdmin() && isImage() && isReasonableSize();
+      allow write: if isSignedIn() && isImage() && isReasonableSize();
     }
 
     match /article-images/{allPaths=**} {
       allow read: if true;
-      allow write: if isAdmin() && isImage() && isReasonableSize();
+      allow write: if isSignedIn() && isImage() && isReasonableSize();
     }
   }
 }

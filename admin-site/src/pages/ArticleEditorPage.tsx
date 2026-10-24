@@ -694,7 +694,7 @@ export function ArticleEditorPage() {
               Cover Image
             </h3>
             <ImageUploader
-              label="Article Cover"
+              label=""
               value={coverImage}
               pathPrefix="article-covers"
               onChange={(url) => {
@@ -702,18 +702,6 @@ export function ArticleEditorPage() {
                 setIsDirty(true);
               }}
             />
-            {coverImage && (
-              <button
-                type="button"
-                onClick={() => {
-                  setCoverImage('');
-                  setIsDirty(true);
-                }}
-                className="text-xs text-red-600 hover:underline"
-              >
-                Remove Cover Image
-              </button>
-            )}
           </div>
 
           {/* Tags Manager */}
